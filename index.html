@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EWX Paint</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script><!-- D3.js-->
+    <script src="https://d3js.org/topojson.v3.min.js"></script> <!-- TopoJSON import -->
+    <script src="saveSvgAsPng.js"></script>
+  </head>
+  <body>
+    <div id="container-control">
+      <h3>Layer Controls</h3>
+      <form>
+        <input type="color" name="color" value="#e66465" id="form-color" />
+        <label for="color">Paint Color</label>
+        <br /><br />
+        <!--<input type="checkbox" name="cities" value="cities" checked>
+        <label for="Cities">Cities</label><br>-->
+        <input type="checkbox" name="interstates" value="interstates" id="form-interstate" checked>
+        <label for="interstates">Interstates</label><br>
+        <input type="checkbox" name="rivers" value="rivers" id="form-river" checked>
+        <label for="rivers">Rivers</label><br>
+        <input type="checkbox" name="shadow" value="shadow" id="form-shadow" checked>
+        <label for="shadow">Drop Shadow</label><br>
+        <br /><br />
+        <label for="scaling">Scaling (%)</label>
+        <input type="number" min="25" max="200" placeholder="100" id="scaling" onkeypress="return event.keyCode != 13;"/>
+      </form><br>
+       <button type="button" id="download-button">Download Image</button> 
+    </div>
+    <div id="container-svg">
+      <p id="instructions">Left click to shade counties. Right click to remove shade.</p>
+  </div>
+  <script src="script.js"></script>
+
+</body>
+</html>
