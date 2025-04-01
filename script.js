@@ -14,7 +14,7 @@ var showMinorCities = d3.select("#form-minor-cities").node().checked
 // SVG initialization
 var margin = {
     top: 0,
-    right: 20,
+    right: 52,
     bottom: 20,
     left: 0
 }
