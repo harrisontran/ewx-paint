@@ -39,3 +39,45 @@ path.river {
   stroke-width: 2px;
   stroke: #222;
 }
+
+circle.city-major {
+  fill: white;
+  stroke-width: 4px;
+  stroke: black;
+}
+
+.city-major-label {
+    font-size:  20px;
+    paint-order: stroke;
+    stroke: white;
+    stroke-width: 3px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    font-weight: 600;
+}
+
+circle.city-minor {
+  fill: white;
+  stroke-width: 4px;
+  stroke: black;
+}
+
+.city-major-label {
+    font-size:  27px;
+    paint-order: stroke;
+    stroke: white;
+    stroke-width: 3px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    font-weight: 600;
+}
+
+.city-minor-label {
+    font-size:  20px;
+    paint-order: stroke;
+    stroke: white;
+    stroke-width: 3px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    font-weight: 600;
+}
