@@ -1,0 +1,23 @@
+{
+"type": "FeatureCollection",
+"name": "cities",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "City": "Austin", "Lat": 30.26, "Lon": -97.75, "Class": "Major" }, "geometry": { "type": "Point", "coordinates": [ -97.75, 30.26 ] } },
+{ "type": "Feature", "properties": { "City": "San Antonio", "Lat": 29.42, "Lon": -98.49, "Class": "Major" }, "geometry": { "type": "Point", "coordinates": [ -98.49, 29.42 ] } },
+{ "type": "Feature", "properties": { "City": "Del Rio", "Lat": 29.37, "Lon": -100.9, "Class": "Major" }, "geometry": { "type": "Point", "coordinates": [ -100.9, 29.37 ] } },
+{ "type": "Feature", "properties": { "City": "Rocksprings", "Lat": 30.02, "Lon": -100.21, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -100.21, 30.02 ] } },
+{ "type": "Feature", "properties": { "City": "Fredericksburg", "Lat": 30.28, "Lon": -98.87, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -98.87, 30.28 ] } },
+{ "type": "Feature", "properties": { "City": "Burnet", "Lat": 30.76, "Lon": -98.23, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -98.23, 30.76 ] } },
+{ "type": "Feature", "properties": { "City": "Uvalde", "Lat": 29.21, "Lon": -99.79, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -99.79, 29.21 ] } },
+{ "type": "Feature", "properties": { "City": "New Braunfels", "Lat": 29.7, "Lon": -98.13, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -98.13, 29.7 ] } },
+{ "type": "Feature", "properties": { "City": "Georgetown", "Lat": 30.63, "Lon": -97.68, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -97.68, 30.63 ] } },
+{ "type": "Feature", "properties": { "City": "Eagle Pass", "Lat": 28.71, "Lon": -100.5, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -100.5, 28.71 ] } },
+{ "type": "Feature", "properties": { "City": "Cuero", "Lat": 29.09, "Lon": -97.29, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -97.29, 29.09 ] } },
+{ "type": "Feature", "properties": { "City": "La Grange", "Lat": 29.91, "Lon": -96.88, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -96.88, 29.91 ] } },
+{ "type": "Feature", "properties": { "City": "Carrizo Springs", "Lat": 28.52, "Lon": -99.86, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -99.86, 28.52 ] } },
+{ "type": "Feature", "properties": { "City": "Pleasanton", "Lat": 28.97, "Lon": -98.48, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -98.48, 28.97 ] } },
+{ "type": "Feature", "properties": { "City": "Kerrville", "Lat": 30.05, "Lon": -99.14, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -99.14, 30.05 ] } },
+{ "type": "Feature", "properties": { "City": "Gonzales", "Lat": 29.5, "Lon": -97.45, "Class": "Minor" }, "geometry": { "type": "Point", "coordinates": [ -97.45, 29.5 ] } }
+]
+}
