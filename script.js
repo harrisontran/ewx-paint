@@ -1,5 +1,5 @@
 var projection = d3.geoAlbersUsa()
-var painting = false; // State is [true] if user is painting
+var painting = false;  // State is [true] if user is painting
 var paintMode = 0;
 
 // Form reading
@@ -8,11 +8,13 @@ var PAINT_COLOR = d3.select("#form-color").node().value;
 var showInterstates = d3.select("#form-interstate").node().checked
 var showShadow = d3.select("#form-shadow").node().checked
 var showRivers = d3.select("#form-river").node().checked
+var showMajorCities = d3.select("#form-major-cities").node().checked
+var showMinorCities = d3.select("#form-minor-cities").node().checked
 
 // SVG initialization
 var margin = {
     top: 0,
-    right: 0,
+    right: 20,
     bottom: 20,
     left: 0
 }
@@ -33,9 +35,9 @@ const geoGroup = svg.append("g").attr("id", "geographyLayer")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 const outlineGroup = svg.append("g").attr("id", "outlineLayer")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-const labelGroup = svg.append("g").attr("id", "labelLayer")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 const cityGroup = svg.append("g").attr("id", "cityLayer")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+const labelGroup = svg.append("g").attr("id", "labelLayer")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
@@ -47,6 +49,9 @@ const drawMap = async function() {
     const counties = await d3.json("geojson/counties_ewx.geojson");
     const interstates = await d3.json("geojson/interstates_ewx.geojson");
     const rivers = await d3.json("geojson/rivers_major_ewx.geojson");
+    const cities = await d3.json("geojson/cities.geojson");
+
+
 
     projection = d3.geoAlbersUsa().fitSize([width, height], counties);
     var path = d3.geoPath().projection(projection);
@@ -101,6 +106,52 @@ const drawMap = async function() {
         .style("visibility", function() {
             return showInterstates ? "visible" : "hidden"
         })
+    console.log(cities.features)
+
+    // Major city mapping
+    cityGroup.selectAll("circle.city-major")
+        .data(cities.features.filter(function(d){ return d.properties.Class === "Major"; }))
+        .join("circle")
+        .attr("class", "city-major")
+        .attr("cx", d => projection(d.geometry.coordinates)[0])
+        .attr("cy", d => projection(d.geometry.coordinates)[1])
+        .attr("r", 10)
+        .attr("visibility", function() {
+            return showMajorCities ? "visible" : "hidden"
+        })
+
+    cityGroup.selectAll("circle.city-minor")
+        .data(cities.features.filter(function(d){ return d.properties.Class === "Minor"; }))
+        .join("circle")
+        .attr("class", "city-minor")
+        .attr("cx", d => projection(d.geometry.coordinates)[0])
+        .attr("cy", d => projection(d.geometry.coordinates)[1])
+        .attr("r", 7)
+        .attr("visibility", function() {
+            return showMinorCities ? "visible" : "hidden"
+        })
+
+    labelGroup.selectAll("text.city-major-label")
+        .data(cities.features.filter(function(d){ return d.properties.Class === "Major"; }))
+        .join("text")
+        .attr("class", "city-major-label")
+        .attr("x", d => projection(d.geometry.coordinates)[0] + 15)
+        .attr("y", d => projection(d.geometry.coordinates)[1])
+        .text(d => d.properties.City)
+        .attr("visibility", function() {
+            return showMajorCities ? "visible" : "hidden"
+        })
+
+    labelGroup.selectAll("text.city-minor-label")
+        .data(cities.features.filter(function(d){ return d.properties.Class === "Minor"; }))
+        .join("text")
+        .attr("class", "city-minor-label")
+        .attr("x", d => projection(d.geometry.coordinates)[0] + 15)
+        .attr("y", d => projection(d.geometry.coordinates)[1])
+        .text(d => d.properties.City)
+        .attr("visibility", function() {
+            return showMinorCities ? "visible" : "hidden"
+        })
 
     // Drop shadow definitions
     filterDef = svg.append("defs").append("filter").attr("id", "dropshadow")
@@ -147,6 +198,39 @@ d3.select("#form-river").on("click", function() {
         d3.selectAll(".river").style("opacity", 0)
     }
 })
+
+d3.select("#form-major-cities").on("click", function() {
+    if (d3.select(this).property("checked")) {
+        d3.selectAll(".city-major").attr("visibility", "visible")
+        d3.selectAll(".city-major-label").attr("visibility", "visible")
+
+        d3.select("#form-minor-cities").property("disabled", false)
+    } else {
+        d3.selectAll(".city-major").attr("visibility", "hidden")
+        d3.selectAll(".city-major-label").attr("visibility", "hidden")
+
+        // Also disable minor cities
+        d3.select("#form-minor-cities")
+        .property("checked", false)
+        .property("disabled", true)
+        clickMinorCities();
+    }
+})
+
+d3.select("#form-minor-cities").on("click", function() {
+    clickMinorCities();
+})
+
+let clickMinorCities = function() {
+
+    if (d3.select("#form-minor-cities").property("checked")) {
+        d3.selectAll(".city-minor").attr("visibility", "visible")
+        d3.selectAll(".city-minor-label").attr("visibility", "visible")
+    } else {
+        d3.selectAll(".city-minor").attr("visibility", "hidden")
+        d3.selectAll(".city-minor-label").attr("visibility", "hidden")
+    }
+}
 
 drawMap();
 
